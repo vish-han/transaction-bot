@@ -35,5 +35,6 @@ const runTask = async () => {
 };
 
 cron.schedule('0 */3 * * *', runTask);
-console.log("Cron job scheduled to run every 3 hours.");
-runTask();
+
+module.exports=runTask;
+
