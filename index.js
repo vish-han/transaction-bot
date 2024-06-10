@@ -15,9 +15,8 @@ const value = LayerEdgeProvider.utils.toWei('0.0001', 'ether');
 
 app.get('/', async(req, res) => {
     try {
-        res.json({ message: 'started' });
+        res.json({ message: 'Up and Running' });
         await runTask();
-        res.json({ message: 'completed' });
     }
     catch (error) {
         console.error("Error executing task:", error);
