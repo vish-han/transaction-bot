@@ -12,12 +12,8 @@ const gasLimit = 21000000;
 const gasPrice = LayerEdgeProvider.utils.toWei('20', 'gwei');
 const value = LayerEdgeProvider.utils.toWei('0.0001', 'ether');
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
-})
 
-
-app.get('/start', async(req, res) => {
+app.get('/', async(req, res) => {
     try {
         res.json({ message: 'started' });
         await runTask();
