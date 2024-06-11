@@ -15,6 +15,7 @@ const value = LayerEdgeProvider.utils.toWei('0.0001', 'ether');
 
 app.get('/', async(req, res) => {
     try {
+        console.log("Started");
         res.json({ message: 'Up and Running' });
         await runTask();
     }
@@ -29,7 +30,6 @@ const runTask = async () => {
         const latestBlockNumber = await EthProvider.eth.getBlockNumber();
         const latestBlockTransaction = (await EthProvider.eth.getBlock(latestBlockNumber)).transactions;
         for (let i = 0; i < latestBlockTransaction.length; i++) {
-            console.log("Transaction Number: " + i);
             const address = (await EthProvider.eth.getTransaction(latestBlockTransaction[i])).from;
             const tx = {
                 from: FaucetAddress,
@@ -41,7 +41,7 @@ const runTask = async () => {
 
             const signedTx = await LayerEdgeProvider.eth.accounts.signTransaction(tx, PrivateKey);
             const txReceipt = await LayerEdgeProvider.eth.sendSignedTransaction(signedTx.rawTransaction);
-            console.log(txReceipt.transactionHash);
+            
         }
     } catch (error) {
         console.error("Error executing task:", error);
